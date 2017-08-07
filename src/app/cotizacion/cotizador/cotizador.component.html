@@ -12,7 +12,8 @@
         <h2>Supuestos</h2>
         <div class="form-group">
             <label for="formGroup-sbm" class="label-form">Responsable</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Responsable">
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Responsable"  name="responsable">
+            
         </div>
         <div class="form-group">
             <label for="formGroup-cl" class="label-form">Duración</label>
@@ -44,12 +45,17 @@
         <h2>Parametros</h2>
         <div class="form-group">
             <label for="formGroup-sbm" class="label-form">Sueldo bruto mensual</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Sueldo bruto mensual">
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Sueldo bruto mensual" 
+            [(ngModel)]="model.parametros.sueldoBruto" name="sueldoBruto">
         </div>
         <div class="form-group">
             <label for="formGroup-cl" class="label-form">Costo Laboral</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Costo laboral">
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Costo laboral" 
+            [(ngModel)] ="model.parametros.costoLaboral" name="costoLaboral">
         </div>
+
+        {{model.parametros.resultado()}}
+
         <div class="form-group">
             <label for="formGroup-cl" class="label-form">Movilidad por mes</label>
             <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Movilidad por mes">

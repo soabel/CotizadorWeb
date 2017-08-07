@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CotizadorComponent } from './cotizador/cotizador.component';
 import { RouterModule, Routes } from "@angular/router";
 
+import { FormsModule } from '@angular/forms';
+
 var routes:Routes=[
   {
     path:'',
@@ -13,7 +15,8 @@ var routes:Routes=[
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule
   ],
   declarations: [CotizadorComponent]
 })
