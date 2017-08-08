@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CotizadorComponent } from './cotizador/cotizador.component';
 import { RouterModule, Routes } from "@angular/router";
-
+/* import { DataTablesModule } from 'angular-datatables'; */
+/* import { BrowserModule } from '@angular/platform-browser'; */
 import { FormsModule } from '@angular/forms';
 
-var routes:Routes=[
+var routes: Routes = [
   {
-    path:'',
+    path: '',
     component: CotizadorComponent
   }
 ]
@@ -16,7 +17,8 @@ var routes:Routes=[
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FormsModule
+    FormsModule/* ,
+    DataTablesModule */
   ],
   declarations: [CotizadorComponent]
 })
