@@ -1,95 +1,94 @@
 <p>
     cotizador works!
 </p>
-<section class="container-fluid mt-0">
-    <form>
-        <h2>Supuestos</h2>
-        <div class="form-group">
-            <label for="formGroup-sbm" class="label-form">Responsable</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Responsable" [(ngModel)]="model.supuestos.responsable"
-                name="responsable">
-
-        </div>
-        <div class="form-group">
-            <label for="formGroup-cl" class="label-form">Duración</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Duración" [(ngModel)]="model.supuestos.duracion"
-                name="duracion">
-        </div>
-        <div class="form-group">
-            <label for="formGroup-cl" class="label-form">Plazo de Pago</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Plazo de Pago" [(ngModel)]="model.supuestos.plazoPago"
-                name="plazoPago">
-        </div>
-        <div class="form-group">
-            <label for="formGroup-cl" class="label-form">Cliente</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Cliente" [(ngModel)]="model.supuestos.cliente"
-                name="cliente">
-        </div>
-        <!-- <div class="form-group">
-            <label for="formGroup-cl" class="label-form">Descripción</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Descripción" [(ngModel)]="model.supuestos.descripcion"
-                name="descripcion">
-        </div> -->
-    </form>
-
-</section>
-<section class="container-fluid mt-0">
-    <form>
-        <h2>Parametros</h2>
-        <!-- <div class="form-group">
-            <label for="formGroup-sbm" class="label-form">Sueldo bruto mensual</label>
-            <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Sueldo bruto mensual" [(ngModel)]="model.parametros.sueldoBruto"
-                name="sueldoBruto">
-        </div> -->
-        <div class="form-group">
-            <label for="formGroup-cl" class="label-form">Costo Laboral</label>
-            <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Costo laboral" [(ngModel)]="model.parametros.costoLaboral"
-                name="costoLaboral">
-        </div>
-        {{model.parametros.resultado()}}
-        <div class="form-group">
-            <label for="formGroup-cl" class="label-form">Movilidad por mes</label>
-            <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Movilidad por mes" [(ngModel)]="model.parametros.movilidadMes"
-                name="movilidadMes">
-        </div>
-        <div class="form-group">
-            <label for="formGroup-cl" class="label-form">Hardware & Software mensual</label>
-            <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Hardware & Software mensual" [(ngModel)]="model.parametros.hardwareSoftwareMes"
-                name="hardwareSoftwareMes">
-        </div>
-        <div class="form-group">
-            <label for="formGroup-cl" class="label-form">Overhead</label>
-            <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Overhead" [(ngModel)]="model.parametros.overHead"
-                name="overHead">
-        </div>
-    </form>
-</section>
 
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <section class "container-fluid mt-0"> !-->
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Supuesto</a></li>
+        <li><a data-toggle="tab" href="#menu1">Parametros</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <h3>Supuesto</h3>
+            <section class="container-fluid mt-0">
+                <form>
 
+                    <div class="form-group">
+                        <label for="formGroup-sbm" class="label-form">Responsable</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Responsable" [(ngModel)]="model.supuestos.responsable"
+                            name="responsable">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroup-cl" class="label-form">Duración</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Duración" [(ngModel)]="model.supuestos.duracion"
+                            name="duracion">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroup-cl" class="label-form">Plazo de Pago</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Plazo de Pago" [(ngModel)]="model.supuestos.plazoPago"
+                            name="plazoPago">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroup-cl" class="label-form">Cliente</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Cliente" [(ngModel)]="model.supuestos.cliente"
+                            name="cliente">
+                    </div>
+                </form>
+            </section>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+            <h3>Parametros</h3>
+            <section class="container-fluid mt-0">
+                <form>                  
+                    <div class="form-group">
+                        <label for="formGroup-cl" class="label-form">Costo Laboral</label>
+                        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Costo laboral" [(ngModel)]="model.parametros.costoLaboral"
+                            name="costoLaboral">
+                    </div>
+                    {{model.parametros.resultado()}}
+                    <div class="form-group">
+                        <label for="formGroup-cl" class="label-form">Movilidad por mes</label>
+                        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Movilidad por mes" [(ngModel)]="model.parametros.movilidadMes"
+                            name="movilidadMes">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroup-cl" class="label-form">Hardware & Software mensual</label>
+                        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Hardware & Software mensual" [(ngModel)]="model.parametros.hardwareSoftwareMes"
+                            name="hardwareSoftwareMes">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroup-cl" class="label-form">Overhead</label>
+                        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Overhead" [(ngModel)]="model.parametros.overHead"
+                            name="overHead">
+                    </div>
+                </form>
+            </section>
+        </div>
+
+    </div>
+</div>
+<!--</section>
+-->
 <section class="container-fluid mt-0">
     <table class="table table-condensed table-hover border">
         <tr>
-            <td>#</td>
-            <td><strong>Tipo de ganancia</strong></td>
-            <td><strong>Descripción Servicio</strong></td>
-            <td><strong>Sueldo Bruto Mensual</strong></td>
-            <td><strong>Tiempo Hrs * Mes</strong></td>
-            <td><strong>Costo Total</strong></td>
-            <td><strong>Gross Margin</strong></td>
-            <td><strong>Precio Venta</strong></td>
+            <th>#</th>
+            <th><strong>Tipo de ganancia</strong></th>
+            <th><strong>Descripción Servicio</strong></th>
+            <th><strong>Sueldo Bruto Mensual</strong></th>
+            <th><strong>Tiempo Hrs * Mes</strong></th>
+            <th><strong>Costo Total</strong></th>
+            <th><strong>Gross Margin</strong></th>
+            <th><strong>Precio Venta</strong></th>
         </tr>
         <tr *ngFor="let cotizacion of model.cotizaciones;">
             <td>{{cotizacion.id}}</td>
             <td>
-                <div class="btn-group">
-                    <!--  <button type="button" class="btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        id="btn_project">
-								    Gross Margin <span class="caret" id="btn_caret"></span>
-								  </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="/cotizador">Precio Venta</a></li>
-                    </ul> -->
+                <div class="styled-select slate">
+
                     <select>
                         <option>Gross Margin</option>
                         <option>Precio Venta</option>                        
@@ -99,25 +98,25 @@
             </td>
             <td>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Descripción" [(ngModel)]="cotizacion.descripcionServicio"
+                    <input type="text" class="form-control-text" id="formGroupExampleInput2" placeholder="Descripción" [(ngModel)]="cotizacion.descripcionServicio"
                         name="descripcion{{cotizacion.id}}">
                 </div>
             </td>
             <td>
                 <div class="form-group">
-                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Sueldo bruto mensual" [(ngModel)]="cotizacion.sueldoBrutoMensual"
+                    <input type="number" class="form-control-number" id="formGroupExampleInput" placeholder="Sueldo bruto mensual" [(ngModel)]="cotizacion.sueldoBrutoMensual"
                         name="sueldoBruto{{cotizacion.id}}">
                 </div>
             </td>
             <td>
                 <div class="form-group">
-                    <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Duración" [(ngModel)]="cotizacion.duracion"
+                    <input type="number" class="form-control-number" id="formGroupExampleInput2" placeholder="Duración" [(ngModel)]="cotizacion.duracion"
                         name="duracion{{cotizacion.id}}">
                 </div>
             </td>
             <td>
                 <div class="form-group">
-                    <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Costo Total" [(ngModel)]="cotizacion.costoTotal"
+                    <input type="number" class="form-control-number" id="formGroupExampleInput2" placeholder="Costo Total" [(ngModel)]="cotizacion.costoTotal"
                         ng-change="calculoTableCostoTotal()}}" name="costoTotal{{cotizacion.id}}">
                 </div>
             </td>
@@ -129,13 +128,13 @@
 
             <td>
                 <div class="form-group">
-                    <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Precio de Venta" [(ngModel)]="cotizacion.resultadoPrecioVenta"
+                    <input type="number" class="form-control-number" id="formGroupExampleInput2" placeholder="Precio de Venta" [(ngModel)]="cotizacion.resultadoPrecioVenta"
                         name="precioVenta{{cotizacion.id}}">
                 </div>
             </td>
         </tr>
     </table>
-    <button type="button" (click)="agregar()">Agregar</button>
+    <button type="button" (click)="agregar()" class="btn add">Agregar cotización</button>
 </section>
 <section class="container-fluid mt-0">
     <br>

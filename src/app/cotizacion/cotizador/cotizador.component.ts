@@ -24,13 +24,13 @@ export class CotizadorComponent implements OnInit {
     this.model.parametros = new CotizacionParametro();
     this.model.parametros.sueldoBruto = 5000;
     this.model.parametros.costoLaboral = 10;
-    this.model.parametros.hardwareSoftwareMes = 0;
-    this.model.parametros.movilidadMes = 0;
-    this.model.parametros.overHead = 0;
+    this.model.parametros.hardwareSoftwareMes = 250;
+    this.model.parametros.movilidadMes = 250;
+    this.model.parametros.overHead = 4.5;
 
     this.model.facturacion = new CotizacionFacturacion();
     this.model.facturacion.costoTotal = 0;
-    this.model.facturacion.grossMargin = 30;
+    this.model.facturacion.grossMargin = 0;
     this.model.facturacion.precioVenta = 0;
 
     this.model.cotizaciones.push(<CotizacionTable>{ tipoGanancia: 'Gross Margin', descripcionServicio: '', duracion: 0, id: 1, resultadoGrossMargin: 0, resultadoPrecioVenta: 0, sueldoBrutoMensual: 0, costoTotal: 0 });
@@ -60,7 +60,7 @@ export class CotizadorComponent implements OnInit {
       this.model.cotizaciones[id].costoTotal = 0;
     var totalGrosMargin = 0;
     totalGrosMargin = ((this.model.cotizaciones[id].resultadoPrecioVenta - this.model.cotizaciones[id].costoTotal) / this.model.cotizaciones[id].resultadoPrecioVenta) * 100;
-    this.model.cotizaciones[id].resultadoGrossMargin=totalGrosMargin;
+    this.model.cotizaciones[id].resultadoGrossMargin = totalGrosMargin;
     return totalGrosMargin;
   }
 
@@ -75,7 +75,7 @@ export class CotizadorComponent implements OnInit {
   CalculoGrossMarginTable(): number {
     var totalPrecioVenta = this.CalculoPrecioVentaTable();
     var totalCostoTotal = this.calculoTableCostoTotal();
-     if (totalPrecioVenta== 0)
+    if (totalPrecioVenta == 0)
       return 0;
     if (totalCostoTotal == null)
       totalCostoTotal = 0;
@@ -84,11 +84,15 @@ export class CotizadorComponent implements OnInit {
     return totalGrosMargin;
   }
 
-   CalculoPrecioVentaTable(): number {
+  CalculoPrecioVentaTable(): number {
     var total = 0;
+    var movilidad = this.model.parametros.movilidadMes;
+    var hrdsoft = this.model.parametros.hardwareSoftwareMes;
     for (var count = 0; count < this.model.cotizaciones.length - 1; count++) {
       total += this.model.cotizaciones[count].resultadoPrecioVenta;
     }
+    total += movilidad + hrdsoft;
+    total += (total*this.model.parametros.overHead)/100;
     return total;
   }
 
