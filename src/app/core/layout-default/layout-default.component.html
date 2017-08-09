@@ -2,7 +2,11 @@
   layout-default works!
 </p>
 
-<ul>
+<style>
+
+</style>
+
+<!-- <ul>
   <li>
     <a href="" class="" routerLink="/home">Home</a>
   </li>
@@ -10,6 +14,37 @@
     <a href="" class="" routerLink="/cotizador">Cotizador</a>
   </li>
 </ul>
+ 
+<-->
+<nav id="navtop" class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded header text-white">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+  <div class="logo_admin">
+    <img id="img_logo" src="../../../assets/image/logo-hundred-1.png" alt="HUNDRED">
+  </div>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <div class="w-25 p-3">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/cotizador">Cotizador</a>
+        </li>
 
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+    </div>
+    <div class="w-15 p-3 text-right">
+      <h6>Jose Luis Terrones</h6>
+      <span>46349771</span>
+    </div>
+    <img class="rounded-circle" src="../../../assets/image/img_profile.jpg" alt="Circle image">
+  </div>
+</nav>
 
 <router-outlet></router-outlet>

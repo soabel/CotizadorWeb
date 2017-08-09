@@ -53,7 +53,17 @@ export class CotizadorComponent implements OnInit {
     return total;
   };
 
+  eliminar(indexr: number) {
+    console.log(indexr);
+    indexr = indexr - 1;
+    this.model.cotizaciones.splice(indexr, 1);
+  }
+
   calculoGrossMargin(id: number): number {
+    if (this.model.cotizaciones[id] == null){
+      return 0;
+    }
+
     if (this.model.cotizaciones[id].resultadoPrecioVenta == 0)
       return 0;
     if (this.model.cotizaciones[id].costoTotal == null)
@@ -92,7 +102,7 @@ export class CotizadorComponent implements OnInit {
       total += this.model.cotizaciones[count].resultadoPrecioVenta;
     }
     total += movilidad + hrdsoft;
-    total += (total*this.model.parametros.overHead)/100;
+    total += (total * this.model.parametros.overHead) / 100;
     return total;
   }
 
