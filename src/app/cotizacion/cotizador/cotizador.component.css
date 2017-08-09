@@ -1,3 +1,144 @@
 .label-form {
     font-size: 14px;
 }
+
+.table th {
+    background-color: #F2F2F2;
+    font-size: 14px;
+    
+}
+
+.table td{
+    background-color: #fdf9f9;
+    font-size: 14px;
+}
+
+.btn {
+    font-size: 14px;
+    background: url('../../../assets/image/button_add.png') no-repeat right center;
+    background-color: #DCDCDC;
+    background-position: 8px 5px;
+    width: 175px;
+    text-align: right;
+}
+
+.form-control-number {
+    display: block;
+    width: 140px;
+    padding: .5rem .75rem;
+    font-size: 14px;
+    line-height: 1.25;
+    color: #464a4c;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    text-align: right;
+}
+
+.form-control-text {
+    display: block;
+    width: 100%;
+    padding: .5rem .75rem;
+    font-size: 14px;
+    line-height: 1.25;
+    color: #464a4c;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.form-group{
+    font-size: 14px;
+}
+
+.styled-select.slate {
+    background: url('../../../assets/image/arrow_combo.png') no-repeat right center;
+    height: 38px;
+    width: 88px;
+    font-size: 16px;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.styled-select {
+    
+    background: url('../../../assets/image/arrow_combo.png') no-repeat 96% 0;
+    height: 38px;
+    overflow: hidden;
+    width: 88px;
+    font-size: 16px;
+    color: #F89404;
+}
+
+    .styled-select select {
+      /*   border: 2px solid #F89404; */
+        background: transparent;
+        border: none;
+        height: 38px;
+        /* padding: 5px; /* If you add too much padding here, the options won't show in IE */ 
+        width: 100px;
+        font-size: 12px;
+        color: #0E3A63;
+    }
+
+
+.panel.with-nav-tabs .panel-heading{
+    padding: 5px 5px 0 5px;
+}
+.panel.with-nav-tabs .nav-tabs{
+	border-bottom: none;
+}
+.panel.with-nav-tabs .nav-justified{
+	margin-bottom: -1px;
+}
+
+/********************************************************************/
+/*** PANEL SUCCESS ***/
+.with-nav-tabs.panel-success .nav-tabs > li > a,
+.with-nav-tabs.panel-success .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-success .nav-tabs > li > a:focus {
+	color: #3c763d;
+}
+.with-nav-tabs.panel-success .nav-tabs > .open > a,
+.with-nav-tabs.panel-success .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-success .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-success .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-success .nav-tabs > li > a:focus {
+	color: #3c763d;
+	background-color: #d6e9c6;
+	border-color: transparent;
+}
+.with-nav-tabs.panel-success .nav-tabs > li.active > a,
+.with-nav-tabs.panel-success .nav-tabs > li.active > a:hover,
+.with-nav-tabs.panel-success .nav-tabs > li.active > a:focus {
+	color: #3c763d;
+	background-color: #fff;
+	border-color: #d6e9c6;
+	border-bottom-color: transparent;
+}
+/* .with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > li > a {
+    color: #3c763d;   
+}
+.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+    background-color: #d6e9c6;
+}
+.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+    color: #fff;
+    background-color: #3c763d;
+} */
+/********************************************************************/

@@ -3,6 +3,7 @@
     font-family: 'GothamBook';
     src: url('./assets/fonts/GothamBook/GothamBook.eot');
     src: local('GothamBook'), url('./assets/fonts/GothamBook/GothamBook.woff') format('woff'), url('./assets/fonts/GothamBook/GothamBook.ttf') format('truetype');
+    
 }
 
 body {
