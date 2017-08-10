@@ -1,6 +1,6 @@
 <div class="divSeparator"></div>
-<ul class="nav nav-tabs" role="tablist">
 
+<ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
         <a class="nav-link active tabColor" href="#Supuesto" role="tab" data-toggle="tab" aria-expanded="true">Supuesto</a>
     </li>
@@ -14,7 +14,6 @@
     <div role="tabpanel" class="tab-pane fade in active show" id="Supuesto">
         <section class="container-fluid mt-0">
             <form>
-
                 <div class="form-group">
                     <label for="formGroup-sbm" class="label-form">Responsable:</label>
                     <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Responsable" [(ngModel)]="model.supuestos.responsable"
@@ -46,7 +45,6 @@
                     <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Costo laboral" [(ngModel)]="model.parametros.costoLaboral"
                         name="costoLaboral">
                 </div>
-                <!--     {{model.parametros.resultado()}} -->
                 <div class="form-group">
                     <label for="formGroup-cl" class="label-form">Movilidad por mes:</label>
                     <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Movilidad por mes" [(ngModel)]="model.parametros.movilidadMes"
@@ -119,7 +117,6 @@
                     {{calculoGrossMargin(cotizacion.id-1)}}%
                 </div>
             </td>
-
             <td>
                 <div class="form-group">
                     <input type="number" class="form-control-number" id="formGroupExampleInput2" placeholder="Precio de Venta" [(ngModel)]="cotizacion.resultadoPrecioVenta"
@@ -216,8 +213,9 @@
                 </section>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary btn-yes">Enviar Correo</button>
+                <button type="button" class="btn btn-popup">Guardar</button>
+                <button type="button" class="btn btn-popup">Enviar Correo</button>                
+                <button type="button" class="btn btn-secondary btn-yes" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>

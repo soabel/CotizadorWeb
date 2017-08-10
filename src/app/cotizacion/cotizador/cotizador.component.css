@@ -34,6 +34,7 @@
     font-size: 14px;
     background-color: #ff8e01;
     color:#5d5c5b;
+    width: 120px;
 }
 .btn-calculate{
     font-size: 14px;
@@ -56,6 +57,19 @@
     background-position: 8px 5px;
     width: 100px;
     text-align: right;
+    border: 1px solid transparent;
+    padding: .5rem 1rem;
+    border-radius: .25rem;
+    transition: all .2s ease-in-out;
+    color:#5d5c5b;
+}
+
+.btn-popup{
+    font-size: 14px;
+    
+    background-color: #DCDCDC;
+    width: 120px;
+    text-align: center;
     border: 1px solid transparent;
     padding: .5rem 1rem;
     border-radius: .25rem;
