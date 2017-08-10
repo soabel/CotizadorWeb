@@ -1,18 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { CotizacionModel, CotizacionParametro, CotizacionSupuesto, CotizacionFacturacion, CotizacionTable } from "./../../cotizacion/cotizador/cotizador.model";
-
-
+import { CotizacionModel, CotizacionParametro, CotizacionSupuesto, CotizacionFacturacion, CotizacionTable, CotizacionService } from "./../../cotizacion/cotizador/cotizador.model";
+import { Jsonp, URLSearchParams } from '@angular/http';
+import 'rxjs/add/operator/map';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule, RequestOptions } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
+import { CotizacionServiceUtil } from './cotizador.service'
 
 @Component({
   selector: 'app-cotizador',
   templateUrl: './cotizador.component.html',
-  styleUrls: ['./cotizador.component.css']
+  styleUrls: ['./cotizador.component.css'],
+  providers: [CotizacionServiceUtil]
 })
 
 export class CotizadorComponent implements OnInit {
   private model: CotizacionModel;
+  private serviceUtil: CotizacionServiceUtil;
   private resultado: number = 0;
-  constructor() {
+  
+  private jsonp: Jsonp;
+  private http: Http;
+  errorMessage: String;
+
+  private cotizacion:any;
+
+  constructor(private cotizadorService: CotizacionServiceUtil) {
+
     this.model = new CotizacionModel();
     this.model.supuestos = new CotizacionSupuesto();
     this.model.supuestos.cliente = 'Claro';
@@ -34,6 +48,20 @@ export class CotizadorComponent implements OnInit {
     this.model.facturacion.precioVenta = 0;
 
     this.model.cotizaciones.push(<CotizacionTable>{ tipoGanancia: 'Gross Margin', descripcionServicio: '', duracion: 0, id: 1, resultadoGrossMargin: 0, resultadoPrecioVenta: 0, sueldoBrutoMensual: 0, costoTotal: 0 });
+
+    this.model.cotizacionService = new CotizacionService();
+    this.model.cotizacionService.cliente = '';
+    this.model.cotizacionService.costoLaboral = 0;
+    this.model.cotizacionService.costoTotal = 0;
+    this.model.cotizacionService.duracion = 0;
+    this.model.cotizacionService.eliminado = false;
+    this.model.cotizacionService.hardwareSoftware = 0;
+    this.model.cotizacionService.idCotizacion = 0;
+    this.model.cotizacionService.idEstado = 1;
+    this.model.cotizacionService.idResponsable = 0;
+    this.model.cotizacionService.movilidad = 0;
+    this.model.cotizacionService.overhead = 0;
+    this.model.cotizacionService.plazoPago = 0;
   }
 
   ngOnInit() {
@@ -42,6 +70,13 @@ export class CotizadorComponent implements OnInit {
 
   agregar() {
     this.model.cotizaciones.push(<CotizacionTable>{ tipoGanancia: 'Gross Margin', descripcionServicio: '', duracion: 0, id: this.model.cotizaciones.length + 1, resultadoGrossMargin: 0, resultadoPrecioVenta: 0, sueldoBrutoMensual: 0, costoTotal: 0 });
+  }
+
+  ingresarPropuesta() {
+    console.log(this.cotizacion);
+    this.cotizadorService.ingresarPropuesta(this.model.cotizacionService).then(this.cotizacion,error => this.errorMessage = <any>error);
+    
+
   }
 
   calculoTableCostoTotal(): number {
@@ -60,7 +95,7 @@ export class CotizadorComponent implements OnInit {
   }
 
   calculoGrossMargin(id: number): number {
-    if (this.model.cotizaciones[id] == null){
+    if (this.model.cotizaciones[id] == null) {
       return 0;
     }
 
@@ -73,14 +108,6 @@ export class CotizadorComponent implements OnInit {
     this.model.cotizaciones[id].resultadoGrossMargin = totalGrosMargin;
     return totalGrosMargin;
   }
-
-  keypress = function ($event) {
-    var total = 0;
-    for (var count = 0; count < this.model.cotizaciones.length - 1; count++) {
-      total += this.model.cotizaciones[count].costoTotal;
-    }
-    this.model.facturacion.costoTotal = total;
-  };
 
   CalculoGrossMarginTable(): number {
     var totalPrecioVenta = this.CalculoPrecioVentaTable();
@@ -106,4 +133,8 @@ export class CotizadorComponent implements OnInit {
     return total;
   }
 
+
+
 }
+
+
