@@ -13,6 +13,7 @@ export class CotizacionSupuesto {
     plazoPago: string;
     cliente: string;
     descripcion: string;
+    email:string;
 
     constructor() {
         this.responsable = '';
@@ -20,6 +21,7 @@ export class CotizacionSupuesto {
         this.plazoPago = '';
         this.cliente = '';
         this.descripcion = '';
+        this.email = '';
     }
 }
 
