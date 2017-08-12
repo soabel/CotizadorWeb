@@ -1,41 +1,43 @@
-<p>
-    cotizador works!
-</p>
+<div class="divSeparator"></div>
 
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" href="#Supuesto" role="tab" data-toggle="tab" aria-expanded="true">Supuesto</a>
+        <a class="nav-link active tabColor" href="#Supuesto" role="tab" data-toggle="tab" aria-expanded="true">Datos Generales</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#Parametros" role="tab" data-toggle="tab">Parametros</a>
+        <a class="nav-link tabColor" href="#Parametros" role="tab" data-toggle="tab">Parametros</a>
     </li>
 </ul>
 
 <!-- Tab panes -->
-<div class="tab-content">
+<div class="tab-content tabColor">
     <div role="tabpanel" class="tab-pane fade in active show" id="Supuesto">
         <section class="container-fluid mt-0">
             <form>
-
                 <div class="form-group">
-                    <label for="formGroup-sbm" class="label-form">Responsable</label>
+                    <label for="formGroup-cl" class="label-form">Cliente:</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Cliente" [(ngModel)]="model.supuestos.cliente"
+                        name="cliente">
+                </div>
+                <div class="form-group">
+                    <label for="formGroup-cl" class="label-form">Descripción:</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Cliente" [(ngModel)]="model.supuestos.descripcion"
+                        name="descripcion">
+                </div>
+                <div class="form-group">
+                    <label for="formGroup-sbm" class="label-form">Responsable:</label>
                     <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Responsable" [(ngModel)]="model.supuestos.responsable"
                         name="responsable">
                 </div>
                 <div class="form-group">
-                    <label for="formGroup-cl" class="label-form">Duración</label>
+                    <label for="formGroup-cl" class="label-form">Duración:</label>
                     <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Duración" [(ngModel)]="model.supuestos.duracion"
                         name="duracion">
                 </div>
                 <div class="form-group">
-                    <label for="formGroup-cl" class="label-form">Plazo de Pago</label>
+                    <label for="formGroup-cl" class="label-form">Plazo de Pago:</label>
                     <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Plazo de Pago" [(ngModel)]="model.supuestos.plazoPago"
                         name="plazoPago">
-                </div>
-                <div class="form-group">
-                    <label for="formGroup-cl" class="label-form">Cliente</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Cliente" [(ngModel)]="model.supuestos.cliente"
-                        name="cliente">
                 </div>
             </form>
         </section>
@@ -44,119 +46,62 @@
         <section class="container-fluid mt-0">
             <form>
                 <div class="form-group">
-                    <label for="formGroup-cl" class="label-form">Costo Laboral</label>
-                    <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Costo laboral" [(ngModel)]="model.parametros.costoLaboral"
-                        name="costoLaboral">
-                </div>
-                {{model.parametros.resultado()}}
-                <div class="form-group">
-                    <label for="formGroup-cl" class="label-form">Movilidad por mes</label>
-                    <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Movilidad por mes" [(ngModel)]="model.parametros.movilidadMes"
-                        name="movilidadMes">
+                    <label for="formGroup-cl" class="label-form">Factor CL:</label>
+                    <input type="number" class="form-control" id="factorCL" placeholder="Factor CL" [(ngModel)]="model.parametros.factorCL" disabled
+                        name="factorCL">
                 </div>
                 <div class="form-group">
-                    <label for="formGroup-cl" class="label-form">Hardware & Software mensual</label>
+                    <label for="formGroup-cl" class="label-form">Hrs * Mes:</label>
+                    <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Hrs * Mes" [(ngModel)]="model.parametros.hrsxmes"
+                        disabled name="hrsxmes">
+                </div>
+                <div class="form-group">
+                    <label for="formGroup-cl" class="label-form">Hardware & Software mensual:</label>
                     <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Hardware & Software mensual" [(ngModel)]="model.parametros.hardwareSoftwareMes"
-                        name="hardwareSoftwareMes">
+                        disabled name="hardwareSoftwareMes">
                 </div>
                 <div class="form-group">
-                    <label for="formGroup-cl" class="label-form">Overhead</label>
+                    <label for="formGroup-cl" class="label-form">Overhead:</label>
                     <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Overhead" [(ngModel)]="model.parametros.overHead"
-                        name="overHead">
+                        disabled name="overHead">
                 </div>
             </form>
         </section>
     </div>
 </div>
-<!-- <div class="container">
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#home">Supuesto</a></li>
-        <li><a data-toggle="tab" href="#menu1">Parametros</a></li>
-    </ul>
-    <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
-            <h3>Supuesto</h3>
-            <section class="container-fluid mt-0">
-                <form>
-
-                    <div class="form-group">
-                        <label for="formGroup-sbm" class="label-form">Responsable</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Responsable" [(ngModel)]="model.supuestos.responsable"
-                            name="responsable">
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroup-cl" class="label-form">Duración</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Duración" [(ngModel)]="model.supuestos.duracion"
-                            name="duracion">
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroup-cl" class="label-form">Plazo de Pago</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Plazo de Pago" [(ngModel)]="model.supuestos.plazoPago"
-                            name="plazoPago">
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroup-cl" class="label-form">Cliente</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Cliente" [(ngModel)]="model.supuestos.cliente"
-                            name="cliente">
-                    </div>
-                </form>
-            </section>
-        </div>
-        <div id="menu1" class="tab-pane fade">
-            <h3>Parametros</h3>
-            <section class="container-fluid mt-0">
-                <form>
-                    <div class="form-group">
-                        <label for="formGroup-cl" class="label-form">Costo Laboral</label>
-                        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Costo laboral" [(ngModel)]="model.parametros.costoLaboral"
-                            name="costoLaboral">
-                    </div>
-                    {{model.parametros.resultado()}}
-                    <div class="form-group">
-                        <label for="formGroup-cl" class="label-form">Movilidad por mes</label>
-                        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Movilidad por mes" [(ngModel)]="model.parametros.movilidadMes"
-                            name="movilidadMes">
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroup-cl" class="label-form">Hardware & Software mensual</label>
-                        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Hardware & Software mensual" [(ngModel)]="model.parametros.hardwareSoftwareMes"
-                            name="hardwareSoftwareMes">
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroup-cl" class="label-form">Overhead</label>
-                        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Overhead" [(ngModel)]="model.parametros.overHead"
-                            name="overHead">
-                    </div>
-                </form>
-            </section>
-        </div>
-
-    </div>
-</div> -->
 
 <section class="container-fluid mt-0">
     <table class="table table-condensed table-hover border">
         <tr>
-            <th>#</th>
+            <!--<th>#</th> -->
             <th><strong>Tipo de ganancia</strong></th>
             <th><strong>Descripción Servicio</strong></th>
-            <th><strong>Sueldo Bruto Mensual</strong></th>
-            <th><strong>Tiempo Hrs * Mes</strong></th>
-            <th><strong>Costo Total</strong></th>
-            <th><strong>Gross Margin</strong></th>
+            <th><strong>SBM</strong></th>
+            <th><strong>T. hrs*Mes</strong></th>
+            <th><strong>Movilidad</strong></th>
             <th><strong>Precio Venta</strong></th>
+            <th><strong>Gross Margin %</strong></th>
+            <th><strong>Costo Laboral</strong></th>
+            <th><strong>Overhead</strong></th>
+            <th><strong>Costo Total</strong></th>
+            <th></th>
         </tr>
         <tr *ngFor="let cotizacion of model.cotizaciones;">
-            <td>{{cotizacion.id}}</td>
+            <!--  <td>{{cotizacion.id}}</td> -->
             <td>
+                <!--  <select [(ngModel)]="cotizacion.grossMarginTag" ng-change="alert('hola')">
+                    <option value="GM">Gross Margin %</option>
+                    <option value="PV">Precio Venta</option>
+                </select> -->
+                <!-- <input type="text" class="form-control" id="lbl{{cotizacion.id}}"  [(ngModel)]="cotizacion.grossMarginTag"
+                        name="lbl{{cotizacion.id}}"> {{cotizacion.grossMarginTag}}-->
                 <div class="styled-select slate">
-
-                    <select>
-                        <option>Gross Margin</option>
-                        <option>Precio Venta</option>                        
+                    <select name="singleSelect{{cotizacion.id}}" [(ngModel)]="cotizacion.grossMarginTag">
+                        <option value="true">Gross Margin %</option>
+                        <option value="false">Precio Venta</option>                        
                     </select>
-
                 </div>
+
             </td>
             <td>
                 <div class="form-group">
@@ -171,79 +116,174 @@
                 </div>
             </td>
             <td>
-                <div class="form-group">
+                <div *ngIf="cotizacion.grossMarginTag == 'true'">
+                    <div class="form-group">
+                        <!-- <input type="number" class="form-control-number" id="formGroupExampleInput2" placeholder="Duración" [(ngModel)]="cotizacion.duracion"
+                        name="duracion{{cotizacion.id}}"> -->
+
+                        {{calculoThrsxMes(cotizacion.id-1)}}
+                    </div>
+                </div>
+                <div *ngIf="cotizacion.grossMarginTag == 'false'">
                     <input type="number" class="form-control-number" id="formGroupExampleInput2" placeholder="Duración" [(ngModel)]="cotizacion.duracion"
                         name="duracion{{cotizacion.id}}">
                 </div>
-            </td>
-            <td>
-                <div class="form-group">
-                    <input type="number" class="form-control-number" id="formGroupExampleInput2" placeholder="Costo Total" [(ngModel)]="cotizacion.costoTotal"
-                        ng-change="calculoTableCostoTotal()}}" name="costoTotal{{cotizacion.id}}">
-                </div>
-            </td>
-            <td>
-                <div class="form-group">
-                    {{calculoGrossMargin(cotizacion.id-1)}}%
-                </div>
-            </td>
 
+            </td>
             <td>
                 <div class="form-group">
-                    <input type="number" class="form-control-number" id="formGroupExampleInput2" placeholder="Precio de Venta" [(ngModel)]="cotizacion.resultadoPrecioVenta"
-                        name="precioVenta{{cotizacion.id}}">
+                    <input type="number" class="form-control-number" id="formGroupExampleInput2" placeholder="Movilidad" [(ngModel)]="cotizacion.movildiad"
+                        name="movilidad{{cotizacion.id}}">
                 </div>
+
+            </td>
+            <td>
+                <div *ngIf="cotizacion.grossMarginTag == 'true'">
+                    <div class="form-group">
+                        <!--  <input type="number" class="form-control-number" id="formGroupExampleInput2" placeholder="Precio de Venta" [(ngModel)]="cotizacion.resultadoPrecioVenta"
+                        name="precioVenta{{cotizacion.id}}"> -->
+                        {{calculoPrecioVenta(cotizacion.id-1,false)}}
+                    </div>
+                </div>
+                <div *ngIf="cotizacion.grossMarginTag == 'false'">
+                    <div class="form-group">
+                       <!--  <input type="number" class="form-control-number" id="formGroupExampleInput2" placeholder="Precio de Venta" [(ngModel)]="cotizacion.resultadoPrecioVenta"
+                            name="precioVenta{{cotizacion.id}}"> -->
+                            {{calculoPrecioVenta(cotizacion.id-1,true)}}
+                    </div>
+                </div>
+            </td>
+            <td>
+                <!-- <div class="form-group">
+                    {{calculoGrossMargin(cotizacion.id-1)}}%
+                </div> -->
+                <div *ngIf="cotizacion.grossMarginTag == 'true'">
+                    <div class="form-group">
+                        <input type="number" class="form-control-number" id="formGroupExampleInput2" placeholder="GM" [(ngModel)]="cotizacion.resultadoGrossMargin"
+                            name="resultadoGrossMargin{{cotizacion.id}}">
+                    </div>
+                </div>
+                <div *ngIf="cotizacion.grossMarginTag == 'false'">
+                    <div class="form-group">
+                        {{calculoGrosMargin(cotizacion.id-1)}}
+                    </div>
+                </div>
+
+            </td>
+            <td>
+                <div class="form-group">
+                    {{calculoCostoLaboral(cotizacion.id-1)}}
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    {{calculoOverHead(cotizacion.id-1)}}
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    {{calculoCostoTotal(cotizacion.id-1)}}
+                </div>
+            </td>
+            <td>
+                <!-- <button type="button" (click)="eliminar(cotizacion.id)" class="btn btn-delete" data-toggle="modal" data-target="#modalDelete" name="buttonDelete{{cotizacion.id}}">Eliminar</button> -->
+                <button type="button" (click)="eliminar(cotizacion.id)" class="btn btn-delete" data-toggle="modal" name="buttonDelete{{cotizacion.id}}">Eliminar</button>
             </td>
         </tr>
     </table>
-    <button type="button" (click)="agregar()" class="btn add">Agregar cotización</button>
+    <div>
+        <button type="button" (click)="agregar()" class="btn btn-add">Agregar cotización</button>
+        <button type="button" class="btn btn-calculate" data-toggle="modal" data-target="#exampleModal3">Calcular Pricing</button>
+    </div>
 </section>
-<section class="container-fluid mt-0">
-    <br>
-    <br>
-    <br>
-    <form>
-        <h2>Resumen</h2>
-        <div>
-            <div class="d-inline-block bg-info">
-                <label for="formGroup-sbm" class="label-form">Gross Margin</label>
-                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Gross Margin" [(ngModel)]="model.facturacion.grossMargin"
-                    name="grossMargin">{{ CalculoGrossMarginTable() }}
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModal3Label">Pricing</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
             </div>
-            <div class="d-inline-block bg-info">
-                <label for="formGroup-cl" class="label-form">Cliente</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Cliente" [(ngModel)]="model.supuestos.cliente"
-                    name="cliente">
+            <div class="modal-body">
+                <section class="container-fluid mt-0">
+                    <form>
+                        <div>
+                            ¿Esta Seguro que desea eliminar el registro?
+                        </div>
+                    </form>
+                </section>
             </div>
-        </div>
-        <div>
-            <div class="d-inline-block bg-info">
-                <label for="formGroup-sbm" class="label-form">Costo Total</label>
-                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Costo Total" [(ngModel)]="model.facturacion.costoTotal"
-                    name="costoTotal"> {{ calculoTableCostoTotal() }}
-            </div>
-            <div class="d-inline-block bg-info">
-                <label for="formGroup-sbm" class="label-form">Responsable</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Responsable" [(ngModel)]="model.supuestos.responsable"
-                    name="responsable">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary yes">Si</button>
             </div>
         </div>
-        <div>
-            <div class="d-inline-block bg-info">
-                <label for="formGroup-cl" class="label-form">Precio de Venta</label>
-                <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Precio de Venta" [(ngModel)]="model.facturacion.precioVenta"
-                    name="precioVenta">{{ CalculoPrecioVentaTable() }}
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModal3Label">Resumen</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
             </div>
-            <div class="d-inline-block bg-info">
-                <label for="formGroup-cl" class="label-form">Duración</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Duración" [(ngModel)]="model.supuestos.duracion"
-                    name="duracion">
+            <div class="modal-body">
+                <section class="container-fluid mt-0">
+                    <form>
+                        <div>
+                            <div class="form-group">
+                                <label for="formGroup-cl" class="label-form">Cliente:</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Cliente" [(ngModel)]="model.supuestos.cliente"
+                                    name="cliente">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroup-sbm" class="label-form">Responsable:</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Responsable" [(ngModel)]="model.supuestos.responsable"
+                                    name="responsable">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroup-cl" class="label-form">Duración:</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Duración" [(ngModel)]="model.supuestos.duracion"
+                                    name="duracion">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroup-cl" class="label-form">Plazo de Pago:</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Plazo de Pago" [(ngModel)]="model.supuestos.plazoPago"
+                                    name="plazoPago">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroup-sbm" class="label-form">Gross Margin:</label>
+                                <!-- <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Gross Margin" [(ngModel)]="model.facturacion.grossMargin"
+                                    name="grossMargin"> -->{{ CalculoGrossMarginTable() }}
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroup-sbm" class="label-form">Costo Total:</label>
+                                <!--  <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Costo Total" [(ngModel)]="model.facturacion.costoTotal"
+                                    name="costoTotal"> -->{{ calculoTableCostoTotal() }}
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroup-cl" class="label-form">Precio de Venta:</label>
+                                <!-- <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Precio de Venta" [(ngModel)]="model.facturacion.precioVenta"
+                                    name="precioVenta"> -->{{ CalculoPrecioVentaTable() }}
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroup-cl" class="label-form">Correo destino:</label>
+                                <input type="text" class="form-control" id="formGroupCorreoDestino" placeholder="Correo destino" [(ngModel)]="model.supuestos.email"
+                                    name="duracion">
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="ingresarPropuesta()" class="btn btn-popup">Guardar</button>
+                <button type="button" class="btn btn-popup">Enviar Correo</button>
+                <button type="button" class="btn btn-secondary btn-yes" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
-        <div class="form-group">
-            <label for="formGroup-cl" class="label-form">Plazo de Pago</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Plazo de Pago" [(ngModel)]="model.supuestos.plazoPago"
-                name="plazoPago">
-        </div>
-    </form>
-</section>
+    </div>
+</div>

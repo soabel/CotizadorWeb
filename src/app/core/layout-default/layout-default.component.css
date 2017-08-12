@@ -1,0 +1,44 @@
+/*   @font-face {
+    font-family: 'GothamBook';
+    src: url('./GothamBook/GothamBook.eot');
+    src: local('GothamBook'), url('./GothamBook/GothamBook.woff') format('woff'), url('./GothamBook/GothamBook.ttf') format('truetype');
+  }
+ */
+  body {
+    font-family: 'GothamBook' !important;
+    font-size: 11px;
+  }
+
+  #navbarNav{
+       background-color: #ff8e01;
+  }
+
+  .header {
+    background-color: #ff8e01;
+  }
+
+  .label-form {
+    font-size: 14px;
+  }
+
+  .logo_admin {
+    background: #EBEBEB !important;
+    height: 80px !important;
+    width: 200px !important;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .rounded-circle {
+    height: 60px;
+    width: 60px;
+  }
+
+  #img_logo {
+    padding-top: 10px;
+  }
+
+  #navtop {
+    height: 80px;
+    padding-left: 0px;
+  }
