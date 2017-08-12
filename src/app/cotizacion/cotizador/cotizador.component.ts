@@ -18,12 +18,12 @@ export class CotizadorComponent implements OnInit {
   private model: CotizacionModel;
   private serviceUtil: CotizacionServiceUtil;
   private resultado: number = 0;
-  
+
   private jsonp: Jsonp;
   private http: Http;
   errorMessage: String;
 
-  private cotizacion:any;
+  private cotizacion: any;
 
   constructor(private cotizadorService: CotizacionServiceUtil) {
 
@@ -41,13 +41,15 @@ export class CotizadorComponent implements OnInit {
     this.model.parametros.hardwareSoftwareMes = 250;
     this.model.parametros.movilidadMes = 250;
     this.model.parametros.overHead = 4.5;
+    this.model.parametros.factorCL = 1.45;
+    this.model.parametros.hrsxmes = 168;
 
     this.model.facturacion = new CotizacionFacturacion();
     this.model.facturacion.costoTotal = 0;
     this.model.facturacion.grossMargin = 0;
     this.model.facturacion.precioVenta = 0;
 
-    this.model.cotizaciones.push(<CotizacionTable>{ tipoGanancia: 'Gross Margin', descripcionServicio: '', duracion: 0, id: 1, resultadoGrossMargin: 0, resultadoPrecioVenta: 0, sueldoBrutoMensual: 0, costoTotal: 0 });
+    this.model.cotizaciones.push(<CotizacionTable>{ tipoGanancia: 'Gross Margin', descripcionServicio: '', duracion: 0, id: 1, resultadoGrossMargin: 0, resultadoPrecioVenta: 0, sueldoBrutoMensual: 0, costoTotal: 0, movildiad: 0, costoLaboral: 0 });
 
     this.model.cotizacionService = new CotizacionService();
     this.model.cotizacionService.cliente = '';
@@ -62,6 +64,7 @@ export class CotizadorComponent implements OnInit {
     this.model.cotizacionService.movilidad = 0;
     this.model.cotizacionService.overhead = 0;
     this.model.cotizacionService.plazoPago = 0;
+
   }
 
   ngOnInit() {
@@ -69,13 +72,13 @@ export class CotizadorComponent implements OnInit {
   }
 
   agregar() {
-    this.model.cotizaciones.push(<CotizacionTable>{ tipoGanancia: 'Gross Margin', descripcionServicio: '', duracion: 0, id: this.model.cotizaciones.length + 1, resultadoGrossMargin: 0, resultadoPrecioVenta: 0, sueldoBrutoMensual: 0, costoTotal: 0 });
+    this.model.cotizaciones.push(<CotizacionTable>{ tipoGanancia: 'Gross Margin', descripcionServicio: '', duracion: 0, id: this.model.cotizaciones.length + 1, resultadoGrossMargin: 0, resultadoPrecioVenta: 0, sueldoBrutoMensual: 0, costoTotal: 0, costoLaboral: 0, movildiad: 0, overHead: 0, grossMarginTag: 'false' });
   }
 
   ingresarPropuesta() {
     console.log(this.cotizacion);
-    this.cotizadorService.ingresarPropuesta(this.model.cotizacionService).then(this.cotizacion,error => this.errorMessage = <any>error);
-    
+    this.cotizadorService.ingresarPropuesta(this.model.cotizacionService).then(this.cotizacion, error => this.errorMessage = <any>error);
+
 
   }
 
@@ -104,9 +107,108 @@ export class CotizadorComponent implements OnInit {
     if (this.model.cotizaciones[id].costoTotal == null)
       this.model.cotizaciones[id].costoTotal = 0;
     var totalGrosMargin = 0;
-    totalGrosMargin = ((this.model.cotizaciones[id].resultadoPrecioVenta - this.model.cotizaciones[id].costoTotal) / this.model.cotizaciones[id].resultadoPrecioVenta) * 100;
+    totalGrosMargin = parseFloat((((this.model.cotizaciones[id].resultadoPrecioVenta - this.model.cotizaciones[id].costoTotal) / this.model.cotizaciones[id].resultadoPrecioVenta) * 100).toFixed(2));
     this.model.cotizaciones[id].resultadoGrossMargin = totalGrosMargin;
     return totalGrosMargin;
+  }
+
+  calculoCostoLaboral(id: number): number {
+    if (this.model.cotizaciones[id] == null) {
+      return 0;
+    }
+    if (this.model.cotizaciones[id].sueldoBrutoMensual == 0)
+      return 0;
+    var costoLaboral = 0;
+    costoLaboral = parseFloat((this.model.cotizaciones[id].sueldoBrutoMensual * this.model.parametros.factorCL).toFixed(2));
+    this.model.cotizaciones[id].costoLaboral = costoLaboral;
+    return costoLaboral;
+  }
+
+  calculoOverHead(id: number): number {
+    if (this.model.cotizaciones[id] == null) {
+      return 0;
+    }
+    if (this.model.cotizaciones[id].costoLaboral == null)
+      return 0;
+    if (this.model.cotizaciones[id].costoLaboral == 0)
+      return 0;
+    var overHead = 0;
+    overHead = parseFloat((this.model.cotizaciones[id].costoLaboral * (this.model.parametros.overHead / 100)).toFixed(2));
+    this.model.cotizaciones[id].overHead = overHead;
+    return overHead;
+  }
+
+  calculoCostoTotal(id: number): number {
+    if (this.model.cotizaciones[id] == null) {
+      return 0;
+    }
+    if (this.model.cotizaciones[id].costoLaboral == 0)
+      return 0;
+    if (this.model.cotizaciones[id].costoLaboral == null)
+      return 0;
+    if (this.model.cotizaciones[id].overHead == 0)
+      return 0;
+    if (this.model.cotizaciones[id].movildiad == null)
+      this.model.cotizaciones[id].movildiad = 0;
+    var costoTotal = (this.model.cotizaciones[id].costoLaboral + this.model.cotizaciones[id].overHead + this.model.cotizaciones[id].movildiad + this.model.parametros.hardwareSoftwareMes).toFixed(2);
+    this.model.cotizaciones[id].costoTotal = parseFloat(costoTotal);
+    return parseFloat(costoTotal);
+  }
+
+  calculoPrecioVenta(id: number, booYes: boolean): number {
+    var precioVenta = 0;
+    if (!booYes) {
+      if (this.model.cotizaciones[id] == null)
+        return 0;
+      if (this.model.cotizaciones[id].costoTotal == null)
+        return 0;
+      if (this.model.cotizaciones[id].resultadoGrossMargin == null)
+        return 0;
+      precioVenta = parseFloat((this.model.cotizaciones[id].costoTotal / (1 - (this.model.cotizaciones[id].resultadoGrossMargin / 100))).toFixed(2));
+    }
+    else {
+      if (this.model.cotizaciones[id] == null)
+        return 0;
+      if (this.model.cotizaciones[id].duracion == null)
+        return 0;
+      precioVenta = parseFloat((this.model.cotizaciones[id].duracion * this.model.parametros.hrsxmes).toFixed(2));
+    }
+
+    this.model.cotizaciones[id].resultadoPrecioVenta = precioVenta;
+    return precioVenta;
+  }
+
+
+  calculoThrsxMes(id: number): number {
+    if (this.model.cotizaciones[id] == null)
+      return 0;
+    if (this.model.cotizaciones[id].resultadoPrecioVenta == null)
+      return 0;
+    var ThrsxMes = parseFloat((this.model.cotizaciones[id].resultadoPrecioVenta / this.model.parametros.hrsxmes).toFixed(2));
+    this.model.cotizaciones[id].duracion = ThrsxMes;
+    return ThrsxMes;
+  }
+
+  tipoCalculo(id: number, booYes: boolean): boolean {
+    console.log(this.model.cotizaciones[id].grossMarginTag);
+    if (this.model.cotizaciones[id] == null)
+      return false;
+    console.log(this.model.cotizaciones[id].grossMarginTag);
+    return !this.model.cotizaciones[id].grossMarginTag;
+  }
+
+  calculoGrosMargin(id: number): number {
+    if (this.model.cotizaciones[id] == null)
+      return 0;
+    if (this.model.cotizaciones[id].resultadoPrecioVenta == 0)
+      return 0;
+    if (this.model.cotizaciones[id].resultadoPrecioVenta == null)
+      return 0;
+    if (this.model.cotizaciones[id].costoTotal == null)
+      this.model.cotizaciones[id].costoTotal = 0;
+    var grossMargin = parseFloat((((this.model.cotizaciones[id].resultadoPrecioVenta - this.model.cotizaciones[id].costoTotal) / this.model.cotizaciones[id].resultadoPrecioVenta)*100).toFixed(2));
+    this.model.cotizaciones[id].resultadoGrossMargin = grossMargin;
+    return grossMargin;
   }
 
   CalculoGrossMarginTable(): number {
@@ -117,7 +219,7 @@ export class CotizadorComponent implements OnInit {
     if (totalCostoTotal == null)
       totalCostoTotal = 0;
     var totalGrosMargin = 0;
-    totalGrosMargin = ((totalPrecioVenta - totalCostoTotal) / totalPrecioVenta) * 100;
+    /* totalGrosMargin = (((totalPrecioVenta - totalCostoTotal) / totalPrecioVenta) * 100).toFixed(2); */
     return totalGrosMargin;
   }
 
@@ -130,6 +232,7 @@ export class CotizadorComponent implements OnInit {
     }
     total += movilidad + hrdsoft;
     total += (total * this.model.parametros.overHead) / 100;
+
     return total;
   }
 

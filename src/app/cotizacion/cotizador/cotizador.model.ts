@@ -16,6 +16,7 @@ export class CotizacionSupuesto {
     descripcion: string;
     email: string;
 
+
     constructor() {
         this.responsable = '';
         this.duracion = 0;
@@ -23,6 +24,7 @@ export class CotizacionSupuesto {
         this.cliente = '';
         this.descripcion = '';
         this.email = '';
+
     }
 }
 
@@ -32,13 +34,16 @@ export class CotizacionParametro {
     movilidadMes: number;
     hardwareSoftwareMes: number;
     overHead: number;
-
+    factorCL: number;
+    hrsxmes: number;
     constructor() {
         this.sueldoBruto = 0;
         this.costoLaboral = 0;
         this.movilidadMes = 0;
         this.hardwareSoftwareMes = 0;
         this.overHead = 0;
+        this.factorCL = 0;
+        this.hrsxmes = 0;
     }
 
     resultado(): number {
@@ -72,8 +77,12 @@ export class CotizacionTable {
     duracion: number;
     resultadoGrossMargin: number = 0;
     resultadoPrecioVenta: number;
-    costoTotal: number = 0;
+    costoLaboral: number = 0;
     costoTotalSum: number = 0;
+    movildiad: number = 0;
+    overHead: number = 0;
+    costoTotal: number = 0;
+    grossMarginTag: string = 'false';
 
     constructor() {
         this.tipoGanancia = '';
@@ -82,44 +91,16 @@ export class CotizacionTable {
         this.duracion = 0;
         this.resultadoGrossMargin = 0;
         this.resultadoPrecioVenta = 0;
-        this.costoTotal = 0;
+        this.costoLaboral = 0;
         this.costoTotalSum = 0;
+        this.movildiad = 0;
+        this.overHead = 0;
+        this.costoTotal = 0;
+        this.grossMarginTag = 'true';
     }
 
 }
 
-
-/* {
-  "idCotizacion": 0,
-  "idResponsable": 0,
-  "responsable": "string",
-  "duracion": 0,
-  "plazoPago": 0,
-  "cliente": "string",
-  "costoLaboral": 0,
-  "movilidad": 0,
-  "hardwareSoftware": 0,
-  "overhead": 0,
-  "costoTotal": 0,
-  "precioVentaTotal": 0,
-  "idEstado": 0,
-  "eliminado": true,
-  "cotizacionDetalles": [
-    {
-      "idCotizacionDetalle": 0,
-      "idTipoGanancia": 0,
-      "descripcionServicio": "string",
-      "sueldoBrutoMensual": 0,
-      "tiempoHorasMes": 0,
-      "costo": 0,
-      "grossMargin": 0,
-      "precioVenta": 0,
-      "eliminado": true,
-      "idCotizacion": 0,
-      "cotizacion": {}
-    }
-  ]
-} */
 export class CotizacionService {
     idCotizacion: number;
     idResponsable: number;
@@ -135,7 +116,7 @@ export class CotizacionService {
     precioVentaTotal: number;
     idEstado: number;
     eliminado: boolean;
-    cotizacionDetalles:DetalleCotizacion[];
+    cotizacionDetalles: DetalleCotizacion[];
 
     constructor() {
         this.idCotizacion = 0;

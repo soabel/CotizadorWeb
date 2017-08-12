@@ -1,13 +1,12 @@
-import { Jsonp, URLSearchParams } from '@angular/http';
+import { NgModule, Component, OnInit, Input, Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule, RequestOptions } from '@angular/http';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/toPromise';
 import { CotizacionService } from "app/cotizacion/cotizador/cotizador.model";
 
-
-
+@Injectable()
 export class CotizacionServiceUtil {
 
     private apiUrl = 'http://comercialapiservice.azurewebsites.net/api/Cotizaciones';
@@ -17,6 +16,7 @@ export class CotizacionServiceUtil {
     ingresarPropuesta(request: CotizacionService): Promise<CotizacionService> {
         console.log(request);
         let headers = new Headers({ 'Content-Type': 'application/json' });
+
         let options = new RequestOptions({ headers: headers });
 
         return this.http.post(this.apiUrl, request, options).toPromise()
