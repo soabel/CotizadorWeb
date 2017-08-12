@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CotizacionModel, CotizacionParametro, CotizacionSupuesto, CotizacionFacturacion, CotizacionTable, CotizacionService } from "./../../cotizacion/cotizador/cotizador.model";
+import { CotizacionModel, CotizacionParametro, CotizacionSupuesto, CotizacionFacturacion, CotizacionTable, CotizacionService, DetalleCotizacion } from "./../../cotizacion/cotizador/cotizador.model";
 import { Jsonp, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { BrowserModule } from '@angular/platform-browser';
@@ -49,7 +49,7 @@ export class CotizadorComponent implements OnInit {
     this.model.facturacion.grossMargin = 0;
     this.model.facturacion.precioVenta = 0;
 
-    this.model.cotizaciones.push(<CotizacionTable>{ tipoGanancia: 'Gross Margin', descripcionServicio: '', duracion: 0, id: 1, resultadoGrossMargin: 0, resultadoPrecioVenta: 0, sueldoBrutoMensual: 0, costoTotal: 0, movildiad: 0, costoLaboral: 0 });
+    this.model.cotizaciones.push(<CotizacionTable>{ tipoGanancia: 'Gross Margin', descripcionServicio: '', duracion: 0, id: 1, resultadoGrossMargin: 0, resultadoPrecioVenta: 0, sueldoBrutoMensual: 0, costoTotal: 0, movildiad: 0, costoLaboral: 0, grossMarginTag: 'true', overHead: 0 });
 
     this.model.cotizacionService = new CotizacionService();
     this.model.cotizacionService.cliente = '';
@@ -72,11 +72,32 @@ export class CotizadorComponent implements OnInit {
   }
 
   agregar() {
-    this.model.cotizaciones.push(<CotizacionTable>{ tipoGanancia: 'Gross Margin', descripcionServicio: '', duracion: 0, id: this.model.cotizaciones.length + 1, resultadoGrossMargin: 0, resultadoPrecioVenta: 0, sueldoBrutoMensual: 0, costoTotal: 0, costoLaboral: 0, movildiad: 0, overHead: 0, grossMarginTag: 'false' });
+    this.model.cotizaciones.push(<CotizacionTable>{ tipoGanancia: 'Gross Margin', descripcionServicio: '', duracion: 0, id: this.model.cotizaciones.length + 1, resultadoGrossMargin: 0, resultadoPrecioVenta: 0, sueldoBrutoMensual: 0, costoTotal: 0, costoLaboral: 0, movildiad: 0, overHead: 0, grossMarginTag: 'true' });
   }
 
   ingresarPropuesta() {
     console.log(this.cotizacion);
+    this.model.cotizacionService.cliente = this.model.supuestos.cliente;
+    this.model.cotizacionService.duracion = this.model.supuestos.duracion;
+    this.model.cotizacionService.hardwareSoftware = this.model.parametros.hardwareSoftwareMes;
+    this.model.cotizacionService.overhead = this.model.parametros.overHead;
+    this.model.cotizacionService.responsable = this.model.supuestos.responsable;
+    this.model.cotizacionService.cotizacionDetalles = [];
+    console.log(this.model.cotizaciones.length );
+    for (var count = 0; count <= this.model.cotizaciones.length - 1; count++) {
+      this.model.cotizacionService.cotizacionDetalles.push(<DetalleCotizacion>
+        {
+          descripcionServicio: this.model.cotizaciones[count].descripcionServicio,
+          precioVenta: this.model.cotizaciones[count].resultadoPrecioVenta,
+          sueldoBrutoMensual: this.model.cotizaciones[count].sueldoBrutoMensual,
+          grossMargin: this.model.cotizaciones[count].resultadoGrossMargin,
+          tiempoHorasMes: this.model.cotizaciones[count].duracion,
+          costo: this.model.cotizaciones[count].costoTotal
+
+        })
+    }
+
+
     this.cotizadorService.ingresarPropuesta(this.model.cotizacionService).then(this.cotizacion, error => this.errorMessage = <any>error);
 
 
@@ -189,13 +210,7 @@ export class CotizadorComponent implements OnInit {
     return ThrsxMes;
   }
 
-  tipoCalculo(id: number, booYes: boolean): boolean {
-    console.log(this.model.cotizaciones[id].grossMarginTag);
-    if (this.model.cotizaciones[id] == null)
-      return false;
-    console.log(this.model.cotizaciones[id].grossMarginTag);
-    return !this.model.cotizaciones[id].grossMarginTag;
-  }
+
 
   calculoGrosMargin(id: number): number {
     if (this.model.cotizaciones[id] == null)
@@ -206,7 +221,7 @@ export class CotizadorComponent implements OnInit {
       return 0;
     if (this.model.cotizaciones[id].costoTotal == null)
       this.model.cotizaciones[id].costoTotal = 0;
-    var grossMargin = parseFloat((((this.model.cotizaciones[id].resultadoPrecioVenta - this.model.cotizaciones[id].costoTotal) / this.model.cotizaciones[id].resultadoPrecioVenta)*100).toFixed(2));
+    var grossMargin = parseFloat((((this.model.cotizaciones[id].resultadoPrecioVenta - this.model.cotizaciones[id].costoTotal) / this.model.cotizaciones[id].resultadoPrecioVenta) * 100).toFixed(2));
     this.model.cotizaciones[id].resultadoGrossMargin = grossMargin;
     return grossMargin;
   }
