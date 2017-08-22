@@ -15,7 +15,7 @@ import { CotizacionServiceUtil } from './cotizador.service'
 })
 
 export class CotizadorComponent implements OnInit {
-  private model: CotizacionModel;
+  public model: CotizacionModel;
   private serviceUtil: CotizacionServiceUtil;
   private resultado: number = 0;
 
@@ -76,14 +76,14 @@ export class CotizadorComponent implements OnInit {
   }
 
   ingresarPropuesta() {
-    console.log(this.cotizacion);
+    //console.log(this.cotizacion);
     this.model.cotizacionService.cliente = this.model.supuestos.cliente;
     this.model.cotizacionService.duracion = this.model.supuestos.duracion;
     this.model.cotizacionService.hardwareSoftware = this.model.parametros.hardwareSoftwareMes;
     this.model.cotizacionService.overhead = this.model.parametros.overHead;
     this.model.cotizacionService.responsable = this.model.supuestos.responsable;
     this.model.cotizacionService.cotizacionDetalles = [];
-    console.log(this.model.cotizaciones.length );
+    //console.log(this.model.cotizaciones.length );
     for (var count = 0; count <= this.model.cotizaciones.length - 1; count++) {
       this.model.cotizacionService.cotizacionDetalles.push(<DetalleCotizacion>
         {

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AdalServices } from "app/core/shell/adal.service";
+import { Observable } from "rxjs/Observable";
+
+import {AdalService} from 'ng2-adal/core';
 
 @Component({
   selector: 'app-shell',
@@ -7,9 +11,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShellComponent implements OnInit {
 
-  constructor() { }
+  public token:string;
+  public user:adal.User;
+
+  constructor(private adalService: AdalServices) {
+    
+    // this.adalService.getUser();
+
+    var userInfo= this.adalService.getUser();
+
+    
+
+   }
 
   ngOnInit() {
+
+    // var d= this.user;
+
+    // console.log(this.user);
+
+
+
+  }
+
+  login(){
+    this.adalService.login();
+    
+  }
+
+  logout(){
+    this.adalService.logout();
+  }
+
+  getToken(){
+    this.adalService.getToken().subscribe((data:string)=> {
+      console.log(data);
+      return this.token=data;
+    }) ;
   }
 
 }
